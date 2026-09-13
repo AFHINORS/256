@@ -4,4 +4,4 @@ Lower is better. `score = compressed + folder` (Dockerfile not counted). Timeout
 
 | # | name | score | compressed | code | time | status |
 |---|------|------:|-----------:|-----:|-----:|--------|
-| 1 | test | 67,109,903 | 0 | 67,109,903 | 3.9s | ok |
+| 1 | test | 67,109,762 | 0 | 67,109,762 | 3.1s | ok |
