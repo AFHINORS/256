@@ -15,6 +15,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: download challenge.b64
+        run: |
+          curl -fsSL -o challenge.b64 \
+            https://github.com/birlug/256/releases/download/files/challenge.b64
+          test -s challenge.b64
       - name: seed local images
         run: |
           docker pull python:3.12-alpine

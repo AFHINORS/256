@@ -1,6 +1,6 @@
 # 256 Challenge
 
-happy programmer's day. compress [challenge.b64](challenge.b64) as small as you can.
+happy programmer's day. compress [challenge.b64](https://github.com/birlug/256/releases/download/files/challenge.b64) as small as you can.
 
 this is a [Hutter Prize](http://prize.hutter1.net/) style contest, but not for general compression.
 
@@ -58,6 +58,7 @@ optional: `"branch": "main"`, `"dir": "subdir"`.
 #   entrypoint: --compress /data/in /data/out
 #               --decompress /data/out /data/back
 # local check:
+curl -LO https://github.com/birlug/256/releases/download/files/challenge.b64
 python3 score.py challenge.b64 /path/to/your/repo
 
 # then PR this repo:

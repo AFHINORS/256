@@ -18,6 +18,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import urllib.request
 import re
 import shutil
 import subprocess
@@ -28,6 +29,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 CHALLENGE = ROOT / "challenge.b64"
+CHALLENGE_URL = os.environ.get(
+    "CHALLENGE_URL",
+    "https://github.com/birlug/256/releases/download/files/challenge.b64",
+)
 PARTICIPANTS = ROOT / "participants.json"
 SCOREBOARD = ROOT / "SCOREBOARD.md"
 TIMEOUT = 60
@@ -37,6 +42,20 @@ CLONE_TIMEOUT = 120
 
 def human(n: int) -> str:
     return f"{n:,}"
+
+
+def ensure_challenge() -> str | None:
+    """Use a local challenge.b64, or download it from the GitHub release."""
+    if CHALLENGE.is_file() and CHALLENGE.stat().st_size > 0:
+        return None
+    print(f"downloading {CHALLENGE_URL}", flush=True)
+    try:
+        urllib.request.urlretrieve(CHALLENGE_URL, CHALLENGE)
+    except OSError as exc:
+        return f"missing challenge.b64 ({exc})"
+    if not CHALLENGE.is_file() or CHALLENGE.stat().st_size == 0:
+        return "missing challenge.b64 (empty download)"
+    return None
 
 
 def solution_bytes(path: Path) -> int:
@@ -269,8 +288,9 @@ def write_scoreboard(rows: list[dict]) -> None:
 
 
 def main() -> int:
-    if not CHALLENGE.is_file():
-        sys.stderr.write(f"missing {CHALLENGE}\n")
+    err = ensure_challenge()
+    if err:
+        sys.stderr.write(f"{err}\n")
         return 1
     if not PARTICIPANTS.is_file():
         sys.stderr.write(f"missing {PARTICIPANTS}\n")
