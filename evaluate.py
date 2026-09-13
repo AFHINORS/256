@@ -85,7 +85,7 @@ def image_tag(name: str) -> str:
 
 def tail(text: str) -> str:
     lines = [ln for ln in text.strip().splitlines() if ln.strip()]
-    return lines[-1] if lines else ""
+    return " | ".join(lines[-3:]) if lines else ""
 
 
 def docker(args: list[str], timeout: int, cwd: Path | None = None) -> subprocess.CompletedProcess:
@@ -149,8 +149,11 @@ def drop_image(tag: str) -> None:
 
 
 def clone_repo(url: str, branch: str | None, dest: Path) -> tuple[str | None, float]:
-    if not (url.startswith("https://") or url.startswith("git@")):
-        return "clone: only https:// or git@ URLs", 0.0
+    ssh = re.match(r"^git@([^:]+):(.+)$", url)
+    if ssh:
+        url = f"https://{ssh.group(1)}/{ssh.group(2)}"
+    if not url.startswith("https://"):
+        return "clone: only https:// URLs", 0.0
     cmd = ["git", "clone", "--depth", "1", "--quiet"]
     if branch:
         cmd += ["--branch", branch]
