@@ -2,5 +2,9 @@
   {
     "name": "test",
     "repository": "https://github.com/birlug/256-example.git"
+  },
+  {
+  "name": "your-github-username",
+  "repository": "https://github.com/you/your-256-repo"
   }
 ]
