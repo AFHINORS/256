@@ -2,5 +2,9 @@
   {
     "name": "test",
     "repository": "https://github.com/birlug/256-example.git"
+  },
+  {
+    "name": "h434ni",
+    "repository": "https://github.com/h434ni/256-answer"
   }
 ]
