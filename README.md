@@ -7,6 +7,17 @@ this is a [Hutter Prize](http://prize.hutter1.net/) style contest, but not for g
 - ai is allowed, but dumping the file into a model is expensive. finding the structure is what pays.
 - any language. You ship a repo with a `Dockerfile` that builds and runs your answer.
 
+## Read This
+
+- **it's theoretically possible to compress this file from 64mb to about 2mb (32x)**
+- **the challenge ends on 19/09/2026**
+- **the prize is awarded to the best algorithm and is calculated like this:**
+```
+prize = 256,000 * log2(size(original file) / size(compressed file))
+```
+
+**so if you compress the file 32x you will be awarded 1,280,000 tomans**
+
 ## Score
 
 ```
