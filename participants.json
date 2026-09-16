@@ -14,5 +14,9 @@
   {
     "name":"Hornet",
     "repository":"https://github.com/thehornet2002/256-solution"
+  },
+  {
+    "name":"AFHINORS",
+    "repository":"https://github.com/AFHINORS/256-solution"
   }
 ]
