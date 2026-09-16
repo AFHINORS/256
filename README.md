@@ -59,6 +59,15 @@ optional: `"branch": "main"`, `"dir": "subdir"`.
 
 [SCOREBOARD.md](SCOREBOARD.md)
 
+## Hints
+
+<details>
+<summary><b>hint 1</b></summary>
+
+> besides other patterns, some parts may be mathematical sequences. ask your agent to help find them.
+
+</details>
+
 ---
 
 ### For agents
